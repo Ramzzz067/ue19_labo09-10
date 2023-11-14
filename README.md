@@ -11,7 +11,7 @@ Ce projet est une application Python qui interroge l'API PunAPI pour afficher un
 - Tout d'abord, installez tous les fichiers du dépôt GitHub sur votre machine.
 - Ensuite, ouvrez votre invite de commande en mode administrateur.
 - Installez et ouvrez également l'application Docker Desktop.
-- Changer dans le fichier Dockerfile.tkt, a la suite de "WORKDIR", et placez votre chemin d'accés vers le repertoire ou ce trouve
+- Dans le fichier Dockerfile.tkt, ajoutez votre chemin d'accès après "WORKDIR", pointant vers le répertoire où se trouvent tous les fichiers nécessaires.
 - Saisissez la commande suivante dans l'invite de commande : "docker build . -f Dockerfile.txt -t app-api".
 - L'image sera ainsi créée dans Docker Desktop avec le nom "app-api".
 - Ensuite, saisissez la commande : "docker run --rm -it app-api" pour lancer cette image.
