@@ -16,6 +16,6 @@ Ce projet est une application Python qui interroge l'API PunAPI pour afficher un
 - Ensuite, saisissez la commande : "docker run --rm -it app-api" pour lancer cette image.
 - Vous pouvez également créer un conteneur en appuyant sur le bouton "play" sur l'image, ce qui vous permettra de lancer l'application.
 
-## Liens d'aides
+## Lien d'aide
 
 https://stackoverflow.com/questions/64985913/failed-to-solve-with-frontend-dockerfile
