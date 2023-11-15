@@ -22,7 +22,7 @@ jobs:
         context: .
         file: C:\Users\ramzy\OneDrive\Documents\lab9\Dockerfile.txt
         push: true
-        tags: ghcr.io/${{ github.repository }}/app-api:latest
+        tags: ghcr.io/${{ github.repository | replace('/', '/app-'/ ) | lowercase }}:latest
       env:
         DOCKER_BUILDKIT: 1
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
