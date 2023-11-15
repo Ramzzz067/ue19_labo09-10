@@ -1,23 +1,26 @@
-name: Scan vulnerabilities
+name: Scan CI Pipeline
 on:
-  schedule:
-    - cron: '0 0 * * *'
-  workflow_dispatch:
-
+  push:
+    branches:
+      - main
+  pull_request:
 jobs:
   build:
-    name: Scan Go vulnerabilities
-    runs-on: ubuntu-latest
+    name: Build and Scan
+    runs-on: ubuntu-20.04
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4.1.1
+        uses: actions/checkout@v3
 
-      - name: Run Trivy vulnerability scanner and create GitHub issues
-        uses: knqyf263/trivy-issue-action@v0.0.5
+      - name: Build an image from Dockerfile
+        run: docker build -t docker.io/my-organization/my-app:${{ github.sha }} .
+
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
         with:
-          assignee: knqyf263
-          severity: CRITICAL
-          skip-dirs: integration,examples,pkg
-          label: kind/security
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          image-ref: 'docker.io/my-organization/my-app:${{ github.sha }}'
+          format: 'table'
+          exit-code: '1'
+          ignore-unfixed: true
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
